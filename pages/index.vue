@@ -1,0 +1,92 @@
+<template>
+  <div>
+    <section class="hero has-background-dark is-fullheight">
+      <div
+        class="hero-body is-flex-direction-column is-align-items-center has-text-centered"
+      >
+        <div class="">
+          <img src="~/assets/images/wuzzle-4x4.png" alt="Wuzzle.me" />
+        </div>
+        <p class="has-text-white is-size-3 mb-5">Because it's Hard</p>
+
+        <p
+          class="joke card m-5 p-5 is-size-5 has-text-black has-background-light"
+        >
+          {{ oneLiner ? oneLiner : "Loading ..." }}
+        </p>
+
+        <NuxtLink
+          to="/wuzzle"
+          class="button is-success is-large m-6 has-text-weight-bold has-text-dark"
+          >PLAY NOW</NuxtLink
+        >
+
+        <div class="quote mb-6 mt-1">
+          <blockquote class="is-size-5 has-text-white has-background-dark">
+            "Took me 6 games to get 1 win. <br />
+            It's harder than Wordle and certainly has a different challenge to
+            it! <br />I'm impressed!"
+          </blockquote>
+        </div>
+
+        <TheStats :gameStats="gameStats" class="stats" />
+
+        <!-- {{ userId }} -->
+      </div>
+    </section>
+  </div>
+</template>
+
+<script setup>
+import { v4 as uuidv4 } from "uuid";
+
+const gameStats = useCookie("gameStats");
+if (!gameStats.value) {
+  gameStats.value = {
+    wins: 0,
+    loses: 0,
+    tokens: 17,
+  };
+}
+
+// console.log(gameStats.value);
+
+if (gameStats.value?.tokens < 1) {
+  gameStats.value.tokens = 17;
+}
+
+// console.log(gameStats.value);
+
+const oneLiner = ref();
+const userId = useCookie("userId");
+if (!userId.value) {
+  userId.value = uuidv4();
+}
+
+onMounted(async () => {
+  const data = await $fetch("/oneliners?take=1");
+  if (data.length > 0) {
+    oneLiner.value = data[0];
+  }
+});
+</script>
+
+<style scoped>
+.joke {
+  max-width: 300px;
+  min-width: 250px;
+  width: 100%;
+}
+
+.stats {
+  max-width: 300px;
+  min-width: 250px;
+  width: 100%;
+}
+
+.quote {
+  max-width: 400px;
+  min-width: 250px;
+  width: 100%;
+}
+</style>
