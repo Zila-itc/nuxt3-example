@@ -1,93 +1,104 @@
 <template>
-  <div class="wrapper is-flex is-justify-content-center has-background-dark">
-    <div
-      v-if="!loading"
-      class="game block p-3 pt-5 m-5 is-flex is-align-items-center is-flex-direction-column has-text-centered"
-      :class="background"
-    >
-      <a href="/">
-        <img src="~/assets/images/wuzzle-4x4.png" alt="Wuzzle.me" />
-      </a>
-
-      <p class="is-size-5">
-        <b>Happy Wuzzle Day</b> 
-        <!-- <br />
-        <small>(aka. Mothers Day)</small> -->
-      </p>
-      <div
-        class="is-flex m-2"
-        v-if="completedWords.length < guesses || !result.includes(false)"
-      >
-        <span v-for="(char, index) in chars" :key="index">
-          <TheLetter
-            :char="index < guess.length ? guess[index] : '?'"
-            :position="index"
-            :background="getBackground(index)"
-          />
-        </span>
-      </div>
-      <div
-        class="is-flex m-2"
-        v-if="result.includes(false) && completedWords.length == guesses"
-      >
-        <span v-for="(char, index) in chars" :key="index">
-          <TheLetter
-            :char="char"
-            :position="index"
-            :background="getBackground(index)"
-          />
-        </span>
-      </div>
-
-      <div v-if="!result.includes(false)" class="result">
-        <h2
-          class="card px-6 p-4 title is-3 has-text-black m-3 has-background-warning"
+  <div
+    class="wrapper is-flex is-flex-direction-column is-justify-content-space-between is-align-items-center has-background-dark"
+  >
+    <div class="game my-3 is-flex is-justify-content-center has-background-white">
+      <div class="is-flex is-flex-direction-column is-justify-content-space-between">
+        <div
+          v-if="!loading"
+          class="page block p-3 pt-5 is-flex is-align-items-center is-flex-direction-column has-text-centered"
+          :class="background"
         >
-          YOU WIN!
-        </h2>
-      </div>
-      <div v-else-if="completedWords.length == guesses" class="result">
-        <h2
-          class="card px-6 p-4 title is-3 has-text-danger m-3 as-background-white"
+          <a href="/">
+            <img src="~/assets/images/wuzzle-4x4.png" alt="Wuzzle.me" />
+          </a>
+
+          <p class="is-size-5">
+            <b>Happy Wuzzle Day</b>
+          </p>
+          <div
+            class="is-flex m-2"
+            v-if="completedWords.length < guesses || !result.includes(false)"
+          >
+            <span v-for="(char, index) in chars" :key="index">
+              <TheLetter
+                :char="index < guess.length ? guess[index] : '?'"
+                :position="index"
+                :background="getBackground(index)"
+              />
+            </span>
+          </div>
+          <div
+            class="is-flex m-2"
+            v-if="result.includes(false) && completedWords.length == guesses"
+          >
+            <span v-for="(char, index) in chars" :key="index">
+              <TheLetter
+                :char="char"
+                :position="index"
+                :background="getBackground(index)"
+              />
+            </span>
+          </div>
+
+          <div v-if="!result.includes(false)" class="result">
+            <h2
+              class="card px-6 p-4 title is-3 has-text-black m-3 has-background-warning"
+            >
+              YOU WIN!
+            </h2>
+          </div>
+          <div v-else-if="completedWords.length == guesses" class="result">
+            <h2
+              class="card px-6 p-4 title is-3 has-text-danger m-3 as-background-white"
+            >
+              YOU LOSE!
+            </h2>
+          </div>
+
+          <div class="tag is-light is-large m-3">
+            <span class="icon mr-3">
+              <i class="fa-regular fa-clock"></i>
+            </span>
+            <span class="my-2">{{ elapsedTime }} seconds</span>
+          </div>
+
+          <!-- <div>{{ userData.tokens }} Tokens</div> -->
+
+          <div v-if="chars.length">
+            <TheWord
+              v-for="index in guesses"
+              :key="index"
+              :chars="chars"
+              @result="handleResult"
+              @letterChange="handleLetterChange"
+              @completedWord="handleCompletedWord"
+              :guessNumber="index"
+              :isDisabled="true"
+              :wordPosition="index"
+              :charsRemaining="charsRemaining"
+              :charsGuessed="charsGuessed"
+            />
+          </div>
+
+          <div
+            class="mt-4 stats"
+            v-if="completedWords.length == guesses || !result.includes(false)"
+          >
+            <a href="/wuzzle" class="button is-warning is-large my-2">
+              <b>PLAY AGAIN</b>
+            </a>
+
+            <TheStats :gameStats="stats" />
+          </div>
+        </div>
+        <div
+          class="oneliner is-flex has-background-white is-justify-content-center"
         >
-          YOU LOSE!
-        </h2>
-      </div>
-
-      <div class="tag is-light is-large m-3">
-        <span class="icon mr-3">
-          <i class="fa-regular fa-clock"></i>
-        </span>
-        <span class="my-2">{{ elapsedTime }} seconds</span>
-      </div>
-
-      <!-- <div>{{ userData.tokens }} Tokens</div> -->
-
-      <div v-if="chars.length">
-        <TheWord
-          v-for="index in guesses"
-          :key="index"
-          :chars="chars"
-          @result="handleResult"
-          @letterChange="handleLetterChange"
-          @completedWord="handleCompletedWord"
-          :guessNumber="index"
-          :isDisabled="true"
-          :wordPosition="index"
-          :charsRemaining="charsRemaining"
-          :charsGuessed="charsGuessed"
-        />
-      </div>
-
-      <div
-        class="mt-4 stats"
-        v-if="completedWords.length == guesses || !result.includes(false)"
-      >
-        <a href="/wuzzle" class="button is-warning is-large my-2">
-          <b>PLAY AGAIN</b>
-        </a>
-
-        <TheStats :gameStats="stats" />
+          <div>
+            <TheOneLiner class="mt-4 mb-5" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -332,6 +343,9 @@ onMounted(async () => {
 
 .game {
   min-height: 100%;
+  flex-grow: 1;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .stats .result {
@@ -343,6 +357,16 @@ onMounted(async () => {
 .result {
   max-width: 300px;
   min-width: 260px;
+  width: 100%;
+}
+
+.oneliner {
+  max-width: 400px;
+  width: 100%;
+}
+
+.page {
+  max-width: 400px;
   width: 100%;
 }
 </style>

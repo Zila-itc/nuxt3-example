@@ -7,19 +7,22 @@
         <div class="">
           <img src="~/assets/images/wuzzle-4x4.png" alt="Wuzzle.me" />
         </div>
-        <p class="has-text-white is-size-3 mb-5">Because it's Hard</p>
+        <!-- <p class="has-text-white is-size-3 mb-5">Because it's Hard</p> -->
 
-        <p
+        <TheOneLiner class="mt-4 mb-5" />
+        <!-- <p
           class="joke card m-5 p-5 is-size-5 has-text-black has-background-light"
         >
           {{ oneLiner ? oneLiner : "Loading ..." }}
-        </p>
+        </p> -->
 
         <NuxtLink
           to="/wuzzle"
-          class="button is-success is-large m-6 has-text-weight-bold has-text-dark"
+          class="button is-success is-large mt-6 mb-3 has-text-weight-bold has-text-dark"
           >PLAY NOW</NuxtLink
         >
+
+        <p class="has-text-white is-size-3 mb-6">Because it's Hard</p>
 
         <div class="quote mb-6 mt-1">
           <blockquote class="is-size-5 has-text-white has-background-dark">
@@ -30,8 +33,6 @@
         </div>
 
         <TheStats :gameStats="gameStats" class="stats" />
-
-        <!-- {{ userId }} -->
       </div>
     </section>
   </div>
@@ -39,6 +40,7 @@
 
 <script setup>
 import { v4 as uuidv4 } from "uuid";
+const oneLiner = useOneLiner();
 
 const gameStats = useCookie("gameStats");
 if (!gameStats.value) {
@@ -57,7 +59,7 @@ if (gameStats.value?.tokens < 1) {
 
 // console.log(gameStats.value);
 
-const oneLiner = ref();
+// const oneLiner = ref();
 const userId = useCookie("userId");
 if (!userId.value) {
   userId.value = uuidv4();
