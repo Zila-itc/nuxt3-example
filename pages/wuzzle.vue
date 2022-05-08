@@ -10,8 +10,9 @@
       </a>
 
       <p class="is-size-5">
-        <b>Happy Wuzzle Day</b> <br />
-        <small>(aka. Mothers Day)</small>
+        <b>Happy Wuzzle Day</b> 
+        <!-- <br />
+        <small>(aka. Mothers Day)</small> -->
       </p>
       <div
         class="is-flex m-2"
