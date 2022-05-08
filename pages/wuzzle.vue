@@ -8,6 +8,11 @@
       <a href="/">
         <img src="~/assets/images/wuzzle-4x4.png" alt="Wuzzle.me" />
       </a>
+
+      <p class="is-size-5">
+        <b>Happy Wuzzle Day</b> <br />
+        <small>(aka. Mothers Day)</small>
+      </p>
       <div
         class="is-flex m-2"
         v-if="completedWords.length < guesses || !result.includes(false)"
