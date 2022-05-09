@@ -4,17 +4,11 @@
       <div
         class="hero-body is-flex-direction-column is-align-items-center has-text-centered"
       >
-        <div class="">
+        <NuxtLink to="/wuzzle"> 
           <img src="~/assets/images/wuzzle-4x4.png" alt="Wuzzle.me" />
-        </div>
-        <!-- <p class="has-text-white is-size-3 mb-5">Because it's Hard</p> -->
+        </NuxtLink>
 
-        <TheOneLiner class="mt-4 mb-5" />
-        <!-- <p
-          class="joke card m-5 p-5 is-size-5 has-text-black has-background-light"
-        >
-          {{ oneLiner ? oneLiner : "Loading ..." }}
-        </p> -->
+        <NuxtLink to="/wuzzle"> <TheOneLiner class="mt-4 mb-5" /></NuxtLink>
 
         <NuxtLink
           to="/wuzzle"
