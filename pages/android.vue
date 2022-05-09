@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper is-flex is-justify-content-center has-background-dark">
-    <div
+    <!-- <div
       v-if="!loading"
       class="game block p-3 pt-5 m-5 is-flex is-align-items-center is-flex-direction-column has-text-centered"
       :class="background"
@@ -55,8 +55,6 @@
         <span class="my-2">{{ elapsedTime }} seconds</span>
       </div>
 
-      <!-- <div>{{ userData.tokens }} Tokens</div> -->
-
       <div v-if="chars.length">
         <TheWord
           v-for="index in guesses"
@@ -83,12 +81,15 @@
 
         <TheStats :gameStats="stats" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup>
 import { v4 as uuidv4 } from "uuid";
+
+const router = useRouter();
+router.push("/wuzzle");
 
 const userId = useCookie("userId");
 let gameStats = useCookie("gameStats");

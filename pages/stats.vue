@@ -26,6 +26,9 @@
 </template>
 
 <script setup>
+const router = useRouter();
+router.push("/wuzzle");
+
 const gameStats = ref();
 const winRatio = ref();
 

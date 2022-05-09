@@ -6,6 +6,9 @@
 </template>
 
 <script setup>
+const router = useRouter();
+router.push("/wuzzle");
+
 const user = ref();
 const userData = useState("userData");
 
