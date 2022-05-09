@@ -19,7 +19,10 @@
 
           <div
             class="is-flex m-2"
-            v-if="completedWords.length < guesses || !result.includes(false)"
+            v-if="
+              (completedWords.length < guesses || !result.includes(false)) &&
+              !gameOver
+            "
           >
             <span v-for="(char, index) in chars" :key="index">
               <TheLetter
@@ -29,10 +32,8 @@
               />
             </span>
           </div>
-          <div
-            class="is-flex m-2"
-            v-if="result.includes(false) && completedWords.length == guesses"
-          >
+         
+          <div class="is-flex m-2" v-if="gameOver">
             <span v-for="(char, index) in chars" :key="index">
               <TheLetter
                 :char="char"
@@ -42,19 +43,24 @@
             </span>
           </div>
 
-          <div v-if="!result.includes(false)" class="result">
-            <h2
-              class="card px-6 p-4 title is-3 has-text-black m-3 has-background-success"
-            >
-              YOU WIN!
-            </h2>
-          </div>
-          <div v-else-if="completedWords.length == guesses" class="result">
-            <h2
-              class="card px-6 p-4 title is-3 has-text-white m-3 has-background-danger"
-            >
-              YOU LOSE!
-            </h2>
+          {{ chars }} {{ gameOver }} {{ completedWords.length }} {{ guesses }}
+          {{ charsRemaining }} {{ showSixthWord }}
+
+          <div v-if="gameOver">
+            <div v-if="!result.includes(false)" class="result">
+              <h2
+                class="card px-6 p-4 title is-3 has-text-black m-3 has-background-success"
+              >
+                YOU WIN!
+              </h2>
+            </div>
+            <div v-else-if="gameOver" class="result">
+              <h2
+                class="card px-6 p-4 title is-3 has-text-white m-3 has-background-danger"
+              >
+                YOU LOSE!
+              </h2>
+            </div>
           </div>
 
           <div class="tag is-light is-large m-3">
@@ -66,7 +72,7 @@
 
           <div v-if="chars.length">
             <TheWord
-              v-for="index in guesses"
+              v-for="index in guesses - 1"
               :key="index"
               :chars="chars"
               @result="handleResult"
@@ -81,9 +87,23 @@
           </div>
 
           <div
-            class="mt-4 stats"
-            v-if="completedWords.length == guesses || !result.includes(false)"
+            v-if="chars.length && completedWords.length >= 5 && showSixthWord"
           >
+            <TheWord
+              :key="6"
+              :chars="chars"
+              @result="handleResult"
+              @letterChange="handleLetterChange"
+              @completedWord="handleCompletedWord"
+              :guessNumber="6"
+              :isDisabled="true"
+              :wordPosition="6"
+              :charsRemaining="charsRemaining"
+              :charsGuessed="charsGuessed"
+            />
+          </div>
+
+          <div class="mt-4 stats" v-if="gameOver">
             <a
               href="/wuzzle"
               class="button is-success is-large my-2 is-fullwidth is-outlined"
@@ -115,11 +135,12 @@ let gameStats = useCookie("gameStats");
 
 const stats = ref();
 
+const gameOver = ref(false);
 const word = ref("");
 const guess = ref([]);
 const chars = ref([]);
 const result = ref([]);
-const guesses = ref(5);
+const guesses = ref(6);
 const length = ref(4);
 const completedWords = ref([]);
 const loading = ref(true);
@@ -156,12 +177,19 @@ const handleAgain = async () => {
   await init();
 };
 
+const showSixthWord = ref(false);
+
+watchEffect(() => {
+  if (completedWords.value.length == 5 && charsRemaining.value.length >= 2) {
+    showSixthWord.value = true;
+  }
+});
+
 watchEffect(() => {
   if (
     completedWords.value.length == guesses.value &&
     result.value.includes(false)
   ) {
-    // background.value = "has-background-danger-light";
     background.value = "has-background-white";
   }
 });
@@ -181,11 +209,10 @@ const handleLetterChange = (letter, position, id) => {
   if (id.value == "1x0") {
     startTimer();
   }
-  // console.log(letter);
-  // if (charsRemaining.value.includes(letter)) {
-  //   const index = charsRemaining.value.indexOf(letter);
-  //   charsRemaining.value.splice(index, 1);
-  // }
+  if (charsRemaining.value.includes(letter)) {
+    const index = charsRemaining.value.indexOf(letter);
+    charsRemaining.value.splice(index, 1);
+  }
 
   charsGuessed.value.push(letter);
 };
@@ -215,7 +242,6 @@ const getBackground = (index) => {
 
 const handleResult = async (e) => {
   result.value = e;
-  // console.log(e)
 };
 
 onMounted(async () => {
@@ -252,8 +278,17 @@ onMounted(async () => {
       (completedWords.value.length == guesses.value &&
         result.value.includes(false)) ||
       (!result.value.includes(false) &&
-        completedWords.value.length == guessCount.value)
+        completedWords.value.length == guessCount.value) ||
+      (completedWords.value.length == guesses.value &&
+        result.value.includes(false) &&
+        charsRemaining.value.length >= 2) ||
+      (completedWords.value.length == guesses.value &&
+        result.value.includes(false)) ||
+      (completedWords.value.length == guesses.value - 1 &&
+        result.value.includes(false) &&
+        charsRemaining.value.length < 2)
     ) {
+      gameOver.value = true;
       stopTimer();
 
       userData.value.user = user;
@@ -261,7 +296,6 @@ onMounted(async () => {
 
       //calculate final winnings
       const correctLetters = result.value.filter((r) => r == true).length;
-      // console.log(correctLetters, result.value);
 
       let winnings = 0;
 
@@ -284,10 +318,7 @@ onMounted(async () => {
           winnings = -bet.value;
       }
 
-      // console.log(winnings, userData.value.tokens);
       userData.value.tokens += winnings;
-
-      // console.log(userData.value.tokens);
 
       const words = completedWords.value.map((w) => {
         return w.join();
@@ -308,8 +339,6 @@ onMounted(async () => {
         loses: loses,
         tokens: tokens,
       };
-
-      // console.log(newStats);
 
       gameStats = useCookie("gameStats");
       gameStats.value = newStats;
