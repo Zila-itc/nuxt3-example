@@ -30,8 +30,11 @@ export default defineEventHandler(async (event) => {
           stats: d.stats,
           userId: d.user.userId,
           words: d.words,
+          id: d.id
         };
       });
+
+    //console.log(docs[0]);
 
     elapsedTimes.sort((a, b) => a.elapsedTime - b.elapsedTime);
 
