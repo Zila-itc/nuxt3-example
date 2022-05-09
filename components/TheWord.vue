@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div v-if="guessCount == 5 && wordPosition == 5" class="card p-2 my-2 has-background-warning has-text-weight-bold">
+      Looks like you need a Bonus try!
+    </div>
+
     <div class="is-flex" v-if="guessNumber <= guessCount">
       <template v-for="index in chars.length" :key="index - 1">
         <TheLetterAndroid
@@ -16,8 +20,14 @@
       </template>
     </div>
 
-    <div v-if="(guessCount <= guessNumber + 1 || guessCount == guessNumber + 1) 
-    && wordComplete && result.includes(false) && guessCount < 5">
+    <div
+      v-if="
+        (guessCount <= guessNumber + 1 || guessCount == guessNumber + 1) &&
+        wordComplete &&
+        result.includes(false) &&
+        guessCount < 5
+      "
+    >
       <p v-for="message in messages1" :key="message">
         {{ message }}
       </p>
@@ -32,7 +42,7 @@ const props = defineProps({
   isDisabled: Boolean,
   wordPosition: Number,
   charsRemaining: Array,
-  charsGuessed: Array
+  charsGuessed: Array,
 });
 
 const currentPosition = ref(0);
@@ -130,8 +140,6 @@ const doesLetterExist = (targetChar) => {
 const isLetterPosition = (targetChar, position) => {
   return props.chars[position] === targetChar;
 };
-
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

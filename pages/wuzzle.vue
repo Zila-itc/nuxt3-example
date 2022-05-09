@@ -40,14 +40,14 @@
 
           <div v-if="!result.includes(false)" class="result">
             <h2
-              class="card px-6 p-4 title is-3 has-text-black m-3 has-background-warning"
+              class="card px-6 p-4 title is-3 has-text-black m-3 has-background-success"
             >
               YOU WIN!
             </h2>
           </div>
           <div v-else-if="completedWords.length == guesses" class="result">
             <h2
-              class="card px-6 p-4 title is-3 has-text-danger m-3 as-background-white"
+              class="card px-6 p-4 title is-3 has-text-white m-3 has-background-danger"
             >
               YOU LOSE!
             </h2>
@@ -59,8 +59,6 @@
             </span>
             <span class="my-2">{{ elapsedTime }} seconds</span>
           </div>
-
-          <!-- <div>{{ userData.tokens }} Tokens</div> -->
 
           <div v-if="chars.length">
             <TheWord
@@ -82,7 +80,7 @@
             class="mt-4 stats"
             v-if="completedWords.length == guesses || !result.includes(false)"
           >
-            <a href="/wuzzle" class="button is-warning is-large my-2">
+            <a href="/wuzzle" class="button is-success is-large my-2 is-fullwidth is-outlined">
               <b>PLAY AGAIN</b>
             </a>
 
@@ -113,7 +111,7 @@ const word = ref("");
 const guess = ref([]);
 const chars = ref([]);
 const result = ref([]);
-const guesses = ref(4);
+const guesses = ref(5);
 const length = ref(4);
 const completedWords = ref([]);
 const loading = ref(true);
