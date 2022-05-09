@@ -43,9 +43,6 @@
             </span>
           </div>
 
-          {{ chars }} {{ gameOver }} {{ completedWords.length }} {{ guesses }}
-          {{ charsRemaining }} {{ showSixthWord }}
-
           <div v-if="gameOver">
             <div v-if="!result.includes(false)" class="result">
               <h2
