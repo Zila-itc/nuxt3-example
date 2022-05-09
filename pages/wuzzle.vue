@@ -2,8 +2,12 @@
   <div
     class="wrapper is-flex is-flex-direction-column is-justify-content-space-between is-align-items-center has-background-dark"
   >
-    <div class="game my-3 is-flex is-justify-content-center has-background-white">
-      <div class="is-flex is-flex-direction-column is-justify-content-space-between">
+    <div
+      class="game my-3 is-flex is-justify-content-center has-background-white"
+    >
+      <div
+        class="is-flex is-flex-direction-column is-justify-content-space-between"
+      >
         <div
           v-if="!loading"
           class="page block p-3 pt-5 is-flex is-align-items-center is-flex-direction-column has-text-centered"
@@ -80,17 +84,21 @@
             class="mt-4 stats"
             v-if="completedWords.length == guesses || !result.includes(false)"
           >
-            <a href="/wuzzle" class="button is-success is-large my-2 is-fullwidth is-outlined">
+            <a
+              href="/wuzzle"
+              class="button is-success is-large my-2 is-fullwidth is-outlined"
+            >
               <b>PLAY AGAIN</b>
             </a>
 
-            <TheStats :gameStats="stats" class="mt-5"/>
+            <TheStats :gameStats="stats" class="mt-5" />
           </div>
         </div>
-        <div v-if="!loading"
+        <div
+          v-if="!loading"
           class="oneliner mb-6 is-flex has-background-white is-justify-content-center"
         >
-          <div >
+          <div>
             <TheOneLiner />
           </div>
         </div>
@@ -324,6 +332,18 @@ onMounted(async () => {
         method: "POST",
         body: doc,
       });
+
+      if (doc.result == "win") {
+        await $fetch("/api/firestore/add?col=wins", {
+          method: "POST",
+          body: doc,
+        });
+      } else {
+        await $fetch("/api/firestore/add?col=loses", {
+          method: "POST",
+          body: doc,
+        });
+      }
     }
   });
 
