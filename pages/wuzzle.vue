@@ -84,14 +84,14 @@
               <b>PLAY AGAIN</b>
             </a>
 
-            <TheStats :gameStats="stats" />
+            <TheStats :gameStats="stats" class="mt-5"/>
           </div>
         </div>
         <div v-if="!loading"
-          class="oneliner is-flex has-background-white is-justify-content-center"
+          class="oneliner mb-6 is-flex has-background-white is-justify-content-center"
         >
           <div >
-            <TheOneLiner class="mt-4 mb-5" />
+            <TheOneLiner />
           </div>
         </div>
       </div>
