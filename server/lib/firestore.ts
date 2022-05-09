@@ -46,3 +46,15 @@ export const del = async (col, id) => {
   const docRef = doc(firestoreDb, col, id);
   return await deleteDoc(docRef);
 };
+
+export const get = async (col, id) => {
+  const docRef = doc(firestoreDb, col, id);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    console.log("No such document!");
+    return "No such document!"
+  }
+};
