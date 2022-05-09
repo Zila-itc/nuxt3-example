@@ -16,6 +16,7 @@
 </template>
 
 <script setup>
+//https://github.com/vuejs/vue/issues/8231
 const props = defineProps({
   position: Number,
   chars: Array,

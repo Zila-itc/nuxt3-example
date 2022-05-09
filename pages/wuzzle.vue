@@ -13,9 +13,6 @@
             <img src="~/assets/images/wuzzle-4x4.png" alt="Wuzzle.me" />
           </a>
 
-          <p class="is-size-5">
-            <b>Happy Wuzzle Day</b>
-          </p>
           <div
             class="is-flex m-2"
             v-if="completedWords.length < guesses || !result.includes(false)"
@@ -92,10 +89,10 @@
             <TheStats :gameStats="stats" />
           </div>
         </div>
-        <div
+        <div v-if="!loading"
           class="oneliner is-flex has-background-white is-justify-content-center"
         >
-          <div>
+          <div >
             <TheOneLiner class="mt-4 mb-5" />
           </div>
         </div>
