@@ -20,5 +20,45 @@ export const getUsers = (take) => {
 };
 
 export const getWord = (length) => {
-  return faker.word.noun(+length);
+  return faker.word.verb(+length);
+};
+
+export const getVerbs = async (length) => {
+  let words = new Set();
+  const array = new Array(1000).fill(1);
+  for await (const num of array) {
+    const verb = faker.word.verb(+length);
+    words.add(verb);
+  }
+  return [...words];
+};
+
+export const getAdverb = async (length) => {
+  let words = new Set();
+  const array = new Array(1000).fill(1);
+  for await (const num of array) {
+    const verb = faker.word.verb(+length);
+    words.add(verb);
+  }
+  return [...words];
+};
+
+export const getNouns = async (length) => {
+  let words = new Set();
+  const array = new Array(1000).fill(1);
+  for await (const num of array) {
+    const verb = faker.word.noun(+length);
+    words.add(verb);
+  }
+  return [...words];
+};
+
+export const getAdjectives = async (length) => {
+  let words = new Set();
+  const array = new Array(1000).fill(1);
+  for await (const num of array) {
+    const verb = faker.word.adjective(+length);
+    words.add(verb);
+  }
+  return [...words];
 };
