@@ -5,7 +5,13 @@ export default defineEventHandler((event) => {
 
   const length = +query.length > 4 || +query.length < 2 ? 4 : +query.length;
 
-  const word = getWord(length)
+  let word: String;
+
+  const badWords: String[] = ["fuck", "rape", "shit", "piss", "cunt", "dumb", "twot", "dick", "cock"];
+
+  do {
+    word = getWord(length);
+  } while (badWords.includes(word));
 
   return { word };
 });

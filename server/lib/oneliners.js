@@ -10,7 +10,7 @@ export const oneLiners = [
   "Just got my ass licked by a Wuzzle.",
   "Have you seen my Wuzzle?",
   "Here Wuzzle, Wuzzle, Wuzzle.",
-  "When did you last play with your Wuzzle?",
+  "When did you last play Wuzzle?",
   "How many Wuzzle's did you have for breakfast?",
   "Rule #1: Don't play with your Wuzzle.",
   "How come you always get the Wuzzle?",
@@ -29,7 +29,6 @@ export const oneLiners = [
   "Take two Wuzzles and call me in the morning.",
   "All I need is a good Wuzzle.",
   "Make sure you clean that Wuzzle.",
-  "If you shake that Wuzzle more than twice, you're playing with it.",
   "Wuzzle. Anybody?",
   "I'm trying to watch my Wuzzle.",
   "Don't get your Wuzzle caught in that zipper.",
@@ -148,5 +147,6 @@ export const oneLiners = [
   "That Wuzzle should be on a leash.",
   "Muzzle that Wuzzle.",
   "My bad habits lead to Wuzzle.",
-  "Get to the point Wuzzle."
+  "Get to the point Wuzzle.",
+  "I prefer my Wuzzle freshly squeezed."
 ];
