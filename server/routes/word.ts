@@ -19,6 +19,7 @@ export default defineEventHandler((event) => {
     "twot",
     "dick",
     "cock",
+    "kill"
   ];
 
   const wordSet = new Set();

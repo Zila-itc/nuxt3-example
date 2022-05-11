@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="guessCount == 5 && wordPosition == 5" class="card p-2 my-2 has-background-warning has-text-weight-bold">
-      Looks like you need a Bonus try!
+      Take a Wuzzle!
     </div>
 
     <div v-if="guessCount == 6 && wordPosition == 6 && charsRemaining.length > 1" class="card p-2 my-2 has-background-warning has-text-weight-bold">
