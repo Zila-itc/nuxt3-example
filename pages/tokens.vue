@@ -90,6 +90,9 @@
 <script setup>
 import { v4 as uuidv4 } from "uuid";
 
+const router = useRouter();
+router.push("/wuzzle");
+
 const userId = useCookie("userId");
 let gameStats = useCookie("gameStats");
 
