@@ -143,7 +143,7 @@ export const oneLiners = [
   "It takes 2 to Wuzzle.",
   "Hey! Can you grab me a Wuzzle.",
   "I can't stop thinking about my Wuzzle.",
-  "When the going get tough, the Wuzzle kicks your ass.",
+  "When the going gets tough, the Wuzzle kicks your ass.",
   "That Wuzzle should be on a leash.",
   "Muzzle that Wuzzle.",
   "My bad habits lead to Wuzzle.",
