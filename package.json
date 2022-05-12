@@ -4,11 +4,14 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "test": "vitest --run --reporter verbose --globals",
+    "test:watch": "vitest --reporter verbose --globals"
   },
   "devDependencies": {
     "@faker-js/faker": "^6.2.0",
-    "nuxt": "3.0.0-rc.1"
+    "nuxt": "3.0.0-rc.1",
+    "vitest": "^0.12.4"
   },
   "dependencies": {
     "firebase": "^9.7.0",
