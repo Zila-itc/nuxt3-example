@@ -1,6 +1,6 @@
 <template>
   <div
-    class="wrapper is-flex is-flex-direction-column is-justify-content-space-between is-align-items-center has-background-dark"
+    class="wrapper is-flex is-flex-direction-column is-justify-content-space-between is-align-items-center has-background-black"
   >
     <div
       class="game my-3 is-flex is-justify-content-center has-background-white"
