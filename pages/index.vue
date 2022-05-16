@@ -4,19 +4,23 @@
       <div
         class="hero-body is-flex-direction-column is-align-items-center has-text-centered"
       >
-        <NuxtLink to="/wuzzle"> 
+        <NuxtLink to="/wuzzle">
           <img src="~/assets/images/wuzzle.png" alt="Wuzzle.me" />
         </NuxtLink>
 
-        <NuxtLink to="/wuzzle"> <TheOneLiner class="mt-6 mb-5" /></NuxtLink>
+        <NuxtLink to="/wuzzle"> <TheOneLiner class="my-6 mb-5" /></NuxtLink>
 
-        <NuxtLink
+        <!-- <NuxtLink
           to="/wuzzle"
           class="button is-success is-large mt-6 mb-3 has-text-weight-bold has-text-dark"
           >PLAY NOW</NuxtLink
-        >
+        > -->
 
-        <p class="has-text-white is-size-3 mb-6">Because it's Hard</p>
+        <NuxtLink to="/wuzzle">
+          <img src="~/assets/images/play-now.png" alt="Wuzzle.me"
+        /></NuxtLink>
+
+        <p class="has-text-white is-size-3 mb-6">Because it's Fun!</p>
 
         <div class="quote mb-6 mt-1">
           <blockquote class="is-size-5 has-text-white has-background-black">
