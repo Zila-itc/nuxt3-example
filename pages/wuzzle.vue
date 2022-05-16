@@ -14,11 +14,11 @@
           :class="background"
         >
           <a href="/">
-            <img src="~/assets/images/wuzzle-4x4.png" alt="Wuzzle.me" />
+            <img src="~/assets/images/wuzzle.png" alt="Wuzzle.me" />
           </a>
 
           <div
-            class="is-flex m-2"
+            class="is-flex mt-5"
             v-if="
               (completedWords.length < guesses || !result.includes(false)) &&
               !gameOver
