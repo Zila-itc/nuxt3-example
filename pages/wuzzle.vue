@@ -14,7 +14,7 @@
           :class="background"
         >
           <a href="/">
-            <img src="~/assets/images/wuzzle.png" alt="Wuzzle.me" />
+            <img src="~/assets/images/wuzzle-2.png" alt="Wuzzle.me" />
           </a>
 
           <div
