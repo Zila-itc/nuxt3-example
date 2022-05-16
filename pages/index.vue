@@ -30,7 +30,7 @@
           </blockquote>
         </div>
 
-        <TheStats :gameStats="gameStats" class="stats" />
+        <!-- <TheStats :gameStats="gameStats" class="stats" /> -->
       </div>
     </section>
   </div>
