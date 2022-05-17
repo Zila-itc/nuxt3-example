@@ -16,8 +16,8 @@
           >PLAY NOW</NuxtLink
         > -->
 
-        <NuxtLink to="/wuzzle">
-          <img src="~/assets/images/play-now.png" alt="Wuzzle.me"
+        <NuxtLink to="/wuzzle" class="mt-3">
+          <img src="~/assets/images/lets-play.png" alt="Wuzzle.me"
         /></NuxtLink>
 
         <p class="has-text-white is-size-3 mb-6">Because it's Fun!</p>
