@@ -29,6 +29,7 @@ const letter = reactive({ char: "" });
 const disabled = ref(false);
 const background = ref();
 const inputRef = ref();
+const correctLetter = ref(false);
 
 const reactiveChars = useReactiveChars;
 
@@ -113,6 +114,10 @@ const handleChange = (e) => {
 
   disabled.value = true;
   background.value = getBackground();
+
+  if (background.value === "has-background-primary-dark") {
+    correctLetter.value = true;
+  }
 };
 
 const getBackground = () => {

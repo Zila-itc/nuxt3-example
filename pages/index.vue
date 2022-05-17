@@ -5,7 +5,7 @@
         class="hero-body is-flex-direction-column is-align-items-center has-text-centered"
       >
         <NuxtLink to="/wuzzle">
-          <img src="~/assets/images/wuzzle-2.png" alt="Wuzzle.me" />
+          <img src="~/assets/images/wuzzle-3.png" alt="Wuzzle.me" />
         </NuxtLink>
 
         <NuxtLink to="/wuzzle"> <TheOneLiner class="my-6 mb-5" /></NuxtLink>
