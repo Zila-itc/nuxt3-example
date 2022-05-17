@@ -20,8 +20,7 @@
           <img src="~/assets/images/lets-play.png" alt="Wuzzle.me"
         /></NuxtLink>
 
-        <p class="has-text-white is-size-3 mb-6">Because it's Fun!</p>
-
+        <p class="has-text-white is-size-3 mb-6">Four Letter Fun</p>
         <div class="quote mb-6 mt-1">
           <blockquote class="is-size-5 has-text-white has-background-black">
             "Took me 6 games to get 1 win. <br />
