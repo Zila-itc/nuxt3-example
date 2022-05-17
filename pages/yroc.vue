@@ -2,12 +2,17 @@
   <div>
     <pre>{{ user }}</pre>
     <pre>{{ userData }}</pre>
+    <img src="~/assets/letters/green/A-Green.png" alt="Wuzzle.me" />
+    <img src="~/assets/letters/green/B-Green.png" alt="Wuzzle.me" />
+    <img src="~/assets/letters/green/C-Green.png" alt="Wuzzle.me" />
+    <img src="~/assets/letters/green/D-Green.png" alt="Wuzzle.me" />
+    <img src="~/assets/letters/green/E-Green.png" alt="Wuzzle.me" />
   </div>
 </template>
 
 <script setup>
 const router = useRouter();
-router.push("/wuzzle");
+// router.push("/wuzzle");
 
 const user = ref();
 const userData = useState("userData");
