@@ -1,6 +1,6 @@
 <template>
   <p
-    class="letter box title p-3 m-1 is-uppercase has-text-centered has-text-white"
+    class="letter box title p-2 m-1 is-uppercase has-text-centered has-text-white is-size-1"
     :class="background"
   >
     {{ char }}

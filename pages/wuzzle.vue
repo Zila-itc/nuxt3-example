@@ -380,6 +380,7 @@ onMounted(async () => {
 <style scoped>
 .wrapper {
   min-height: 100vh;
+  font-family: Itim;
 }
 
 .game {

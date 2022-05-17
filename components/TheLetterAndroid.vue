@@ -5,7 +5,7 @@
       :id="id"
       :value="letter.char"
       type="text"
-      class="letter title p-3 m-1 is-uppercase has-text-centered"
+      class="letter title p-1 m-1 is-uppercase has-text-centered is-size-1"
       :class="background"
       @input="(e) => handleChange(e)"
       :disabled="currentPosition != position || disabled"
@@ -150,5 +150,6 @@ const isLetterPosition = (targetChar, position) => {
 <style>
 .letter {
   width: 4rem;
+  font-family: Itim;
 }
 </style>

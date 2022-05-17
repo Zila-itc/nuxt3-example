@@ -8,21 +8,16 @@
           <img src="~/assets/images/wuzzle-3.png" alt="Wuzzle.me" />
         </NuxtLink>
 
-        <NuxtLink to="/wuzzle"> <TheOneLiner class="my-6 mb-5" /></NuxtLink>
+        <NuxtLink to="/wuzzle"> <TheOneLiner class="oneliner my-6 mb-5" /></NuxtLink>
 
-        <!-- <NuxtLink
-          to="/wuzzle"
-          class="button is-success is-large mt-6 mb-3 has-text-weight-bold has-text-dark"
-          >PLAY NOW</NuxtLink
-        > -->
 
         <NuxtLink to="/wuzzle" class="mt-3">
           <img src="~/assets/images/lets-play.png" alt="Wuzzle.me"
         /></NuxtLink>
 
-        <p class="has-text-white is-size-3 mb-6">Four Letter Fun</p>
+        <p class="slogan has-text-white is-size-3 mb-6">Four Letter Fun</p>
         <div class="quote mb-6 mt-1">
-          <blockquote class="is-size-5 has-text-white has-background-black">
+          <blockquote class="is-size-4 has-text-white has-background-black">
             "Took me 6 games to get 1 win. <br />
             It's harder than Wordle and certainly has a different challenge to
             it! <br />I'm impressed!"
@@ -71,10 +66,11 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.joke {
-  max-width: 300px;
+.oneliner {
+  /* max-width: 300px;
   min-width: 250px;
-  width: 100%;
+  width: 100%; */
+  font-family: Itim;
 }
 
 .stats {
@@ -87,5 +83,10 @@ onMounted(async () => {
   max-width: 400px;
   min-width: 250px;
   width: 100%;
+  font-family: Itim;
+}
+
+.slogan {
+  font-family: Itim;
 }
 </style>
